@@ -24,6 +24,11 @@ function MakeTodo() {
     const todoIndex = tempStore.findIndex((idx) => {
       return idx.id === e;
     });
+    for (let i = 0; i < tempStore.length; i++) {
+      if (tempStore[i].id !== e) {
+        tempStore[i] = { ...tempStore[i], editMode: false };
+      }
+    }
     tempStore[todoIndex] = { ...tempStore[todoIndex], editMode: true };
     settodoStore(tempStore);
   };
