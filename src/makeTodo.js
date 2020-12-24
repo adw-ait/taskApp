@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Todos from "./Todo";
+import "./style.css";
+
 function MakeTodo() {
   const [inputText, setinputText] = useState("");
   const [todoStore, settodoStore] = useState([]);
@@ -62,28 +64,28 @@ function MakeTodo() {
   };
   return (
     <div>
-      <form action="">
-        <input
-          type="text"
-          value={inputText}
-          onChange={handleInputChange}
-          placeholder="Title"
-        />
-        <br />
+      <h1 className="heading">TASKS</h1>
+      <div className="flex-container">
+        <form onSubmit={handleSubmit} className="flex-container-input">
+          <input
+            className="todoInput"
+            type="text"
+            value={inputText}
+            onChange={handleInputChange}
+            placeholder="Enter Something..."
+          />
+        </form>
 
-        <br />
-        <button type="submit" onClick={handleSubmit}>
-          Submit
-        </button>
-      </form>
-      <br />
-      <Todos
-        allTheStates={[todoStore, readOnly]}
-        remove={removeTodo}
-        editMode={toggleEditMode}
-        handleEdit={handleEditChange}
-        confEdit={confirmEdit}
-      />
+        <div>
+          <Todos
+            allTheStates={[todoStore, readOnly]}
+            remove={removeTodo}
+            editMode={toggleEditMode}
+            handleEdit={handleEditChange}
+            confEdit={confirmEdit}
+          />
+        </div>
+      </div>
     </div>
   );
 }

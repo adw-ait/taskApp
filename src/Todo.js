@@ -1,5 +1,10 @@
 import React from "react";
+import deleteBefore from "./resources/delete_before.png";
+import deleteAfter from "./resources/delete_after.png";
+import done from "./resources/done.png";
+import "animate.css";
 
+import "./style.css";
 function Todos(props) {
   const [todoStore, readOnly] = [...props.allTheStates];
   const removeTodo = props.remove;
@@ -13,8 +18,12 @@ function Todos(props) {
         <>
           {todoStore.map((todo) => {
             return (
-              <div key={todo.id}>
+              <div
+                className="flex-container-todos animate__bounceIn"
+                key={todo.id}
+              >
                 <input
+                  className="singletodoInput"
                   onChange={(e) => {
                     handleEditChange({ value: e.target.value, id: todo.id });
                   }}
@@ -26,21 +35,30 @@ function Todos(props) {
                   value={todo.content}
                 />
                 {todo.editMode && (
-                  <button
+                  <img
+                    className="done"
+                    src={done}
                     onClick={() => {
                       confirmEdit(todo.id);
                     }}
-                  >
-                    Confirm
-                  </button>
+                    alt=""
+                  />
                 )}
-                <button onClick={() => removeTodo(todo.id)}>Remove</button>
+
+                <img
+                  className="removeTodoImg "
+                  src={deleteBefore}
+                  onMouseOver={(e) => (e.currentTarget.src = deleteAfter)}
+                  onMouseOut={(e) => (e.currentTarget.src = deleteBefore)}
+                  onClick={() => removeTodo(todo.id)}
+                  alt=""
+                />
               </div>
             );
           })}
         </>
       ) : (
-        <h2>Enter some Todos</h2>
+        <h2> </h2>
       )}
     </div>
   );

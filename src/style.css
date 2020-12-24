@@ -1,0 +1,93 @@
+html {
+  display: flex;
+  justify-content: center;
+
+  margin-top: 50px;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* border: 1px solid black; */
+  width: 400px;
+}
+
+.heading {
+  display: flex;
+
+  justify-content: center;
+  font-weight: bold;
+  font-family: ChunkFive-Regular;
+  letter-spacing: 3px;
+}
+
+.flex-container-input {
+  margin: 25px;
+}
+
+.flex-container-todos {
+  display: flex;
+
+  margin: 15px;
+  padding: 10px;
+  width: 300px;
+  border-radius: 32px;
+  background: #f7f7f8;
+  box-shadow: -4px -4px 14px #dcdcdd, 7px 7px 14px #ffffff;
+}
+
+.flex-container-todos:focus-within {
+  box-shadow: -3px -3px 8px 2px lightblue, 3px 3px 8px 2px lightblue;
+}
+
+.flex-container-clear {
+  border: 1px solid black;
+  padding: 5px;
+  border-radius: 30px;
+}
+
+.todoInput {
+  font-size: 20px;
+  border: none;
+  border-bottom: 1px solid black;
+  font-size: 25px;
+  max-width: 300px;
+  font-weight: bold;
+  outline: none;
+}
+
+.removeTodoImg {
+  height: 30px;
+  width: 30px;
+
+  margin-left: auto;
+}
+
+.singletodoInput {
+  border: none;
+  width: 230px;
+  background-color: transparent;
+  font-size: 20px;
+  font-weight: bold;
+  outline: none;
+}
+
+.done {
+  height: 30px;
+  width: 30px;
+
+  margin-left: auto;
+}
+
+.clearAllImg {
+  height: 30px;
+  width: 30px;
+}
+
+@font-face {
+  font-family: "ChunkFive-Regular";
+  src: local("ChunkFive-Regular"),
+    url("./Font/ChunkFive-Regular.otf") format("opentype");
+  font-weight: normal;
+}
