@@ -9,8 +9,8 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* border: 1px solid black; */
-  width: 400px;
+  border: 1px solid black;
+  width: 430px;
 }
 
 .heading {
@@ -31,7 +31,7 @@ html {
 
   margin: 15px;
   padding: 10px;
-  width: 300px;
+  width: 330px;
   border-radius: 32px;
   background: #f7f7f8;
   box-shadow: -4px -4px 14px #dcdcdd, 7px 7px 14px #ffffff;
@@ -73,7 +73,8 @@ html {
   outline: none;
 }
 
-.done {
+.done,
+.cancel {
   height: 30px;
   width: 30px;
 

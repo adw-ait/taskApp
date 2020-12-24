@@ -7,6 +7,13 @@ function MakeTodo() {
   const [todoStore, settodoStore] = useState([]);
   const [todoId, settodoId] = useState(1);
   const [readOnly, setreadOnly] = useState(true);
+  const [valueChanged, setvalueChanged] = useState(false);
+  const [prevTodoStore, setprevTodoStore] = useState([]);
+
+  const restorePreviousValue = () => {
+    settodoStore(prevTodoStore);
+    setvalueChanged(false);
+  };
 
   const confirmEdit = (id) => {
     setreadOnly(true);
@@ -16,9 +23,11 @@ function MakeTodo() {
     });
     tempStore[todoIndex] = { ...tempStore[todoIndex], editMode: false };
     settodoStore(tempStore);
+    setvalueChanged(false);
   };
 
   const toggleEditMode = (e) => {
+    setprevTodoStore(todoStore);
     setreadOnly(false);
     const tempStore = [...todoStore];
     const todoIndex = tempStore.findIndex((idx) => {
@@ -34,6 +43,7 @@ function MakeTodo() {
   };
 
   const handleEditChange = (e) => {
+    setvalueChanged(true);
     const tempStore = [...todoStore];
     const todoIndex = tempStore.findIndex((index) => {
       return index.id === e.id;
@@ -83,11 +93,12 @@ function MakeTodo() {
 
         <div>
           <Todos
-            allTheStates={[todoStore, readOnly]}
+            allTheStates={[todoStore, readOnly, valueChanged]}
             remove={removeTodo}
             editMode={toggleEditMode}
             handleEdit={handleEditChange}
             confEdit={confirmEdit}
+            confPrevRest={restorePreviousValue}
           />
         </div>
       </div>
