@@ -1,8 +1,10 @@
 import React from "react";
 import deleteBefore from "./resources/delete_before.png";
 import deleteAfter from "./resources/delete_after.png";
-import done from "./resources/done.png";
-import cancel from "./resources/cancel.png";
+import done_before from "./resources/done_before.png";
+import done_after from "./resources/done_after.png";
+import cancel_after from "./resources/cancel_after.png";
+import cancel_before from "./resources/cancel_before.png";
 import "animate.css";
 
 import "./style.css";
@@ -25,6 +27,7 @@ function Todos(props) {
                 key={todo.id}
               >
                 <input
+                  onBlur={restorePreviousValue}
                   className="singletodoInput"
                   onChange={(e) => {
                     handleEditChange({ value: e.target.value, id: todo.id });
@@ -40,29 +43,64 @@ function Todos(props) {
                 {todo.editMode && (
                   <>
                     <img
-                      className="done"
-                      src={done}
+                      className="done-desktop"
+                      src={done_before}
+                      onMouseOver={(e) => {
+                        e.currentTarget.src = done_after;
+                      }}
+                      onMouseOut={(e) => {
+                        e.currentTarget.src = done_before;
+                      }}
+                      onClick={() => {
+                        confirmEdit(todo.id);
+                      }}
+                      alt=""
+                    />
+                    <img
+                      className="done-mobile"
+                      src={done_after}
                       onClick={() => {
                         confirmEdit(todo.id);
                       }}
                       alt=""
                     />
                     {valueChanged && (
-                      <img
-                        className="cancel"
-                        src={cancel}
-                        onClick={restorePreviousValue}
-                        alt="cancel"
-                      />
+                      <>
+                        <img
+                          className="cancel-desktop"
+                          src={cancel_before}
+                          onMouseOver={(e) => {
+                            e.currentTarget.src = cancel_after;
+                          }}
+                          onMouseOut={(e) => {
+                            e.currentTarget.src = cancel_before;
+                          }}
+                          onClick={restorePreviousValue}
+                          alt="cancel"
+                        />
+                        <img
+                          className="cancel-mobile"
+                          src={cancel_after}
+                          onClick={restorePreviousValue}
+                          alt="cancel"
+                        />
+                      </>
                     )}
                   </>
                 )}
 
                 <img
-                  className="removeTodoImg "
+                  className="removeTodoImg-desktop"
                   src={deleteBefore}
                   onMouseOver={(e) => (e.currentTarget.src = deleteAfter)}
                   onMouseOut={(e) => (e.currentTarget.src = deleteBefore)}
+                  onClick={() => removeTodo(todo.id)}
+                  alt=""
+                />
+
+                <img
+                  className="removeTodoImg-mobile"
+                  src={deleteAfter}
                   onClick={() => removeTodo(todo.id)}
                   alt=""
                 />

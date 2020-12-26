@@ -1,8 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Passion+One:wght@700&display=swap");
+
 html {
   display: flex;
   justify-content: center;
-
-  margin-top: 50px;
 }
 
 .flex-container {
@@ -18,8 +18,9 @@ html {
 
   justify-content: center;
   font-weight: bold;
-  font-family: ChunkFive-Regular;
-  letter-spacing: 3px;
+  font-size: 4em;
+  /* letter-spacing: px; */
+  font-family: "Passion One", cursive;
 }
 
 .flex-container-input {
@@ -34,7 +35,8 @@ html {
   width: 330px;
   border-radius: 32px;
   background: #f7f7f8;
-  box-shadow: -4px -4px 14px #dcdcdd, 7px 7px 14px #ffffff;
+
+  box-shadow: 0px 20px 15px 3px rgba(0, 0, 0, 0.1);
 }
 
 .flex-container-todos:focus-within {
@@ -57,11 +59,51 @@ html {
   outline: none;
 }
 
-.removeTodoImg {
+.removeTodoImg-mobile {
+  display: none;
+}
+.removeTodoImg-desktop {
+  height: 30px;
+  width: 30px;
+  margin-left: auto;
+}
+
+.done-mobile,
+.cancel-mobile {
+  display: none;
+}
+
+.done-desktop,
+.cancel-desktop {
   height: 30px;
   width: 30px;
 
   margin-left: auto;
+}
+
+@media screen and (max-width: 500px) {
+  .removeTodoImg-desktop {
+    display: none;
+  }
+  .removeTodoImg-mobile {
+    display: block;
+    height: 30px;
+    width: 30px;
+    margin-left: auto;
+  }
+
+  .done-desktop,
+  .cancel-desktop {
+    display: none;
+  }
+
+  .done-mobile,
+  .cancel-mobile {
+    display: block;
+    height: 30px;
+    width: 30px;
+    margin-left: auto;
+  }
 }
 
 .singletodoInput {
@@ -73,22 +115,7 @@ html {
   outline: none;
 }
 
-.done,
-.cancel {
-  height: 30px;
-  width: 30px;
-
-  margin-left: auto;
-}
-
 .clearAllImg {
   height: 30px;
   width: 30px;
-}
-
-@font-face {
-  font-family: "ChunkFive-Regular";
-  src: local("ChunkFive-Regular"),
-    url("./Font/ChunkFive-Regular.otf") format("opentype");
-  font-weight: normal;
 }
