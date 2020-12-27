@@ -25,9 +25,13 @@ function Todos(props) {
               <div
                 className="flex-container-todos animate__bounceIn"
                 key={todo.id}
+                onBlur={(e) => {
+                  if (!e.currentTarget.contains(e.relatedTarget)) {
+                    restorePreviousValue();
+                  }
+                }}
               >
                 <input
-                  onBlur={restorePreviousValue}
                   className="singletodoInput"
                   onChange={(e) => {
                     handleEditChange({ value: e.target.value, id: todo.id });
@@ -43,6 +47,7 @@ function Todos(props) {
                 {todo.editMode && (
                   <>
                     <img
+                      tabIndex="0"
                       className="done-desktop"
                       src={done_before}
                       onMouseOver={(e) => {
@@ -51,12 +56,13 @@ function Todos(props) {
                       onMouseOut={(e) => {
                         e.currentTarget.src = done_before;
                       }}
-                      onClick={() => {
+                      onClick={(e) => {
                         confirmEdit(todo.id);
                       }}
                       alt=""
                     />
                     <img
+                      tabIndex="0"
                       className="done-mobile"
                       src={done_after}
                       onClick={() => {
@@ -67,6 +73,7 @@ function Todos(props) {
                     {valueChanged && (
                       <>
                         <img
+                          tabIndex="1"
                           className="cancel-desktop"
                           src={cancel_before}
                           onMouseOver={(e) => {
@@ -79,6 +86,7 @@ function Todos(props) {
                           alt="cancel"
                         />
                         <img
+                          tabIndex="1"
                           className="cancel-mobile"
                           src={cancel_after}
                           onClick={restorePreviousValue}
