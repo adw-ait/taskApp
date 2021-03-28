@@ -64,6 +64,23 @@ function MakeTodo() {
     settodoStore(tempStore);
   };
 
+  const AddToLocalStorage = () => {
+    localStorage.setItem("Todos", JSON.stringify(todoStore));
+  };
+
+  const ReadFromLocalStorage = () => {
+    const itemFromLocalStorage = localStorage.getItem("Todos");
+    settodoStore(JSON.parse(itemFromLocalStorage) || []);
+  };
+
+  useEffect(() => {
+    ReadFromLocalStorage();
+  }, []);
+
+  useEffect(() => {
+    AddToLocalStorage();
+  }, [todoStore]);
+
   useEffect(() => {
     settodoId(1);
   }, []);
